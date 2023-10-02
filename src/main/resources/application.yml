@@ -1,0 +1,34 @@
+## Default Database Properties (In memory H2)
+spring:
+  profiles: default
+  h2:
+    console:
+      enabled: true
+      path: /h2
+      settings:
+        web-allow-others: true
+  datasource:
+    url: jdbc:h2:mem:bugout
+    driverClassName: org.h2.Driver
+    username: bugout
+    password: bugout
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+---
+## Dev Database Properties (local PostgreSQL)
+spring:
+  profiles: dev
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bugout
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+
+
